@@ -5,7 +5,7 @@ const isLocal = window.location.hostname === 'localhost'
 
 const API_URL = isLocal
     ? 'http://localhost:8080/api/audit'
-    : 'https://YOUR_RENDER_APP_NAME.onrender.com/api/audit';
+    : 'https://page-pulse-api-crk0.onrender.com/api/audit';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('audit-form');
