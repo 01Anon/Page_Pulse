@@ -26,7 +26,7 @@ A lightweight web application that audits any URL and generates a structured SEO
 | Backend  | Java 17 + Spring Boot 3           | Type-safe, enterprise-grade, structured error handling|
 | Parsing  | Jsoup                             | Purpose-built HTML parser for Java, handles malformed HTML gracefully |
 | Frontend | Vanilla HTML/CSS/JS               | Zero dependencies, fast load, demonstrates core web fundamentals |
-| Design   | Glassmorphism + CSS Animations    | Modern, premium aesthetic without any CSS framework  |
+| Design   | Skeuomorphism + CSS Animations    | Realistic depth, embossed surfaces — unique and premium without any CSS framework |
 
 ## 📦 Project Structure
 
@@ -54,7 +54,7 @@ Digital_Heros/
 │
 └── frontend/                         # Static Frontend
     ├── index.html                    # Page structure
-    ├── style.css                     # Glassmorphic design system
+    ├── style.css                     # Skeuomorphic design system
     └── app.js                        # API calls + DOM rendering
 ```
 
