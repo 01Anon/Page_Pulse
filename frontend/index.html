@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Pulse | URL Auditor</title>
+    <meta name="description" content="Audit your website URLs instantly with Page Pulse.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <div class="logo-container">
+                <div class="pulse-icon"></div>
+                <h1>Page Pulse</h1>
+            </div>
+            <p class="subtitle">Instantly audit the health and structure of any webpage.</p>
+        </header>
+
+        <section class="search-section">
+            <form id="audit-form">
+                <div class="input-group">
+                    <input type="url" id="url-input" placeholder="https://example.com" required>
+                    <button type="submit" id="submit-btn">
+                        <span>Analyze</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </form>
+            <div id="error-message" class="error-message hidden"></div>
+        </section>
+
+        <section id="results-section" class="results-section hidden">
+            <div class="report-header">
+                <h2>Audit Report</h2>
+                <span id="target-display" class="target-url"></span>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">HTTP Status</span>
+                    <span class="metric-value" id="val-status">--</span>
+                    <div class="metric-indicator" id="ind-status"></div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Response Time</span>
+                    <span class="metric-value"><span id="val-time">--</span> <small style="font-size: 1rem; color: var(--text-muted);">ms</small></span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">H1 Tags</span>
+                    <span class="metric-value" id="val-h1">--</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Images Missing Alt</span>
+                    <span class="metric-value" id="val-alt">--</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Word Count (Approx)</span>
+                    <span class="metric-value" id="val-words">--</span>
+                </div>
+            </div>
+
+            <div class="details-card">
+                <div class="detail-row">
+                    <strong>Page Title:</strong>
+                    <p id="val-title">--</p>
+                </div>
+                <div class="detail-row">
+                    <strong>Meta Description:</strong>
+                    <p id="val-desc">--</p>
+                </div>
+            </div>
+        </section>
+
+        <div id="loader" class="loader-container hidden">
+            <div class="spinner"></div>
+            <p>Scanning page...</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Built for Digital Heroes Training Task. <a href="https://digitalheroesco.com" target="_blank" rel="noopener noreferrer">digitalheroesco.com</a></p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
