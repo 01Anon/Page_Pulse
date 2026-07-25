@@ -1,0 +1,421 @@
+:root {
+    --bg-base: #c8c8c8;
+    --bg-surface: #e8e8e8;
+    --bg-card: linear-gradient(145deg, #f0f0f0, #d6d6d6);
+    --text-main: #2c2c2c;
+    --text-muted: #6b6b6b;
+    --accent-primary: #3478f6;
+    --accent-dark: #2560d4;
+    --success: #34c759;
+    --warning: #ff9f0a;
+    --error: #ff3b30;
+
+    /* Skeuomorphic shadow layers */
+    --shadow-raised: 
+        6px 6px 12px rgba(0, 0, 0, 0.2),
+        -4px -4px 10px rgba(255, 255, 255, 0.7);
+    --shadow-pressed:
+        inset 4px 4px 8px rgba(0, 0, 0, 0.15),
+        inset -3px -3px 6px rgba(255, 255, 255, 0.6);
+    --shadow-deep:
+        8px 8px 20px rgba(0, 0, 0, 0.25),
+        -6px -6px 16px rgba(255, 255, 255, 0.6);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-base);
+    /* Subtle linen-like noise texture via repeating gradient */
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        );
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Layout */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    flex: 1;
+    width: 100%;
+}
+
+/* Hidden background shapes (not used in skeuomorphism) */
+.background-shapes {
+    display: none;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.pulse-icon {
+    width: 28px;
+    height: 28px;
+    background: radial-gradient(circle at 35% 35%, #5a9dff, var(--accent-primary), var(--accent-dark));
+    border-radius: 50%;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 2px 3px rgba(255, 255, 255, 0.4),
+        0 0 0 3px var(--bg-surface),
+        0 0 0 5px rgba(0, 0, 0, 0.1);
+    animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 2px 3px rgba(255,255,255,0.4), 0 0 0 3px var(--bg-surface), 0 0 0 5px rgba(0,0,0,0.1); }
+    50% { transform: scale(1.1); box-shadow: 0 3px 8px rgba(52,120,246,0.4), inset 0 2px 3px rgba(255,255,255,0.4), 0 0 0 3px var(--bg-surface), 0 0 0 6px rgba(52,120,246,0.15); }
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--text-main);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Form — Embossed search bar */
+.search-section {
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+    border-right-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+    padding: 0.4rem;
+    box-shadow: var(--shadow-deep);
+    transition: box-shadow 0.3s ease;
+}
+
+.input-group:focus-within {
+    box-shadow:
+        8px 8px 20px rgba(0, 0, 0, 0.28),
+        -6px -6px 16px rgba(255, 255, 255, 0.5),
+        inset 0 0 0 2px rgba(52, 120, 246, 0.2);
+}
+
+input[type="url"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 1rem 1.5rem;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    font-family: inherit;
+    outline: none;
+}
+
+input[type="url"]::placeholder {
+    color: #999;
+}
+
+/* Realistic raised button with pressed state */
+button {
+    background: linear-gradient(180deg, #5a9dff 0%, var(--accent-primary) 50%, var(--accent-dark) 100%);
+    color: #fff;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50px;
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    transition: all 0.15s ease;
+}
+
+button:hover {
+    background: linear-gradient(180deg, #6aabff 0%, #4088f0 50%, var(--accent-dark) 100%);
+    box-shadow:
+        0 5px 10px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+button:active {
+    background: linear-gradient(180deg, var(--accent-dark) 0%, var(--accent-primary) 100%);
+    box-shadow:
+        inset 0 2px 5px rgba(0, 0, 0, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
+}
+
+/* Error message — embossed red panel */
+.error-message {
+    color: var(--error);
+    margin-top: 1rem;
+    text-align: center;
+    background: linear-gradient(145deg, #fde8e8, #f5d0d0);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+    box-shadow:
+        inset 2px 2px 5px rgba(0, 0, 0, 0.08),
+        inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
+
+/* Results Section */
+.results-section {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.report-header h2 {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.target-url {
+    color: var(--accent-primary);
+    background: linear-gradient(145deg, #e0ecff, #c8daff);
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    word-break: break-all;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+        inset 1px 1px 3px rgba(0, 0, 0, 0.06),
+        inset -1px -1px 2px rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
+
+/* Metric Cards — Raised physical panels */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.metric-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+    border-right-color: rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-raised);
+    transition: all 0.25s ease;
+}
+
+.metric-card:hover {
+    box-shadow:
+        8px 8px 16px rgba(0, 0, 0, 0.22),
+        -5px -5px 12px rgba(255, 255, 255, 0.65);
+    transform: translateY(-3px);
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* Colored indicator strip on top of card */
+.metric-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 16px 16px 0 0;
+}
+
+.indicator-success {
+    background: linear-gradient(90deg, #2db84c, var(--success));
+    box-shadow: 0 1px 4px rgba(52, 199, 89, 0.3);
+}
+
+.indicator-warning {
+    background: linear-gradient(90deg, #e88e00, var(--warning));
+    box-shadow: 0 1px 4px rgba(255, 159, 10, 0.3);
+}
+
+.indicator-error {
+    background: linear-gradient(90deg, #e02020, var(--error));
+    box-shadow: 0 1px 4px rgba(255, 59, 48, 0.3);
+}
+
+/* Details Card — Sunken panel */
+.details-card {
+    background: var(--bg-surface);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-pressed);
+}
+
+.detail-row {
+    margin-bottom: 1.2rem;
+}
+
+.detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.detail-row strong {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 0.3rem;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.detail-row p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    color: var(--text-main);
+}
+
+/* Loader */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+    gap: 1rem;
+    color: var(--text-muted);
+}
+
+.spinner {
+    width: 44px;
+    height: 44px;
+    border: 5px solid var(--bg-surface);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.15),
+        inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Footer — Subtle beveled strip */
+footer {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    color: var(--text-muted);
+    background: linear-gradient(180deg, #bbb 0%, var(--bg-base) 3%, var(--bg-base) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+footer a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: var(--accent-dark);
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .input-group {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 0.5rem;
+    }
+    button {
+        justify-content: center;
+        border-radius: 14px;
+    }
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    h1 {
+        font-size: 2.2rem;
+    }
+}
