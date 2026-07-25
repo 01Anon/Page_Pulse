@@ -1,4 +1,11 @@
-const API_URL = 'http://localhost:8080/api/audit';
+// Auto-detect: use localhost for development, deployed URL for production
+const isLocal = window.location.hostname === 'localhost'
+    || window.location.hostname === '127.0.0.1'
+    || window.location.protocol === 'file:';
+
+const API_URL = isLocal
+    ? 'http://localhost:8080/api/audit'
+    : 'https://YOUR_RENDER_APP_NAME.onrender.com/api/audit';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('audit-form');
