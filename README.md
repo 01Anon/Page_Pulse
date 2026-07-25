@@ -104,6 +104,20 @@ Open `frontend/index.html` in your browser, or use a Live Server extension.
 | 500    | Unexpected server error     |
 
 
+## 🧠 Design Decisions & Reasoning
+
+1. **Separation of Concerns (DTOs vs Domain logic):** 
+   * **Decision:** We used structured `AuditRequest` and `AuditResponse` Data Transfer Objects instead of passing raw JSON Maps or internal entities to the controller.
+   * **Reasoning:** This prevents over-posting, provides a crystal-clear API contract for the frontend, and allows the use of Java Bean Validation (`@NotBlank`, `@Pattern`) right at the controller layer before hitting business logic.
+
+2. **Asynchronous/Stateless Parsing with Jsoup:**
+   * **Decision:** We chose Jsoup instead of a headless browser (like Selenium or Puppeteer).
+   * **Reasoning:** Jsoup is significantly faster and uses a fraction of the memory. Since SEO metrics (H1s, Meta tags, Alt attributes) rely on the raw HTML DOM structure rather than dynamically rendered JavaScript content, a headless browser would have added unnecessary overhead and complexity.
+
+3. **Skeuomorphic Frontend Design over Frameworks:**
+   * **Decision:** We built the UI using Vanilla HTML/CSS/JS with a Skeuomorphic design (realistic depth, shadows, gradients) rather than using React or Tailwind CSS.
+   * **Reasoning:** For a single-page utility tool, a React build step is overkill. A Skeuomorphic aesthetic stands out distinctly against the common flat/material designs, demonstrating deep mastery of CSS geometry and styling without relying on pre-built utility frameworks.
+
 ## 📝 License
 
 Built for Digital Heroes Training Task.
