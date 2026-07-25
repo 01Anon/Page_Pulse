@@ -103,13 +103,6 @@ Open `frontend/index.html` in your browser, or use a Live Server extension.
 | 422    | Non-HTML content type       |
 | 500    | Unexpected server error     |
 
-## 📊 Scoring Criteria
-
-| Criterion                     | Weight |
-|-------------------------------|--------|
-| Correctness and Error Handling| 40     |
-| Code Quality and Structure    | 35     |
-| API Design                    | 25     |
 
 ## 📝 License
 
