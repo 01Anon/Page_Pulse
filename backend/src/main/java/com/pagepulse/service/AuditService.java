@@ -95,7 +95,7 @@ public class AuditService {
     /**
      * Extracts the page title from the document.
      */
-    private String extractTitle(Document doc) {
+    String extractTitle(Document doc) {
         String title = doc.title();
         return (title != null && !title.isBlank()) ? title.trim() : "No Title Found";
     }
@@ -103,7 +103,7 @@ public class AuditService {
     /**
      * Extracts the meta description content, if present.
      */
-    private String extractMetaDescription(Document doc) {
+    String extractMetaDescription(Document doc) {
         Element meta = doc.selectFirst("meta[name=description]");
         if (meta != null) {
             String content = meta.attr("content");
@@ -118,7 +118,7 @@ public class AuditService {
      * Counts the number of <img> tags that have no alt attribute
      * or an empty/whitespace-only alt attribute.
      */
-    private int countImagesMissingAlt(Document doc) {
+    int countImagesMissingAlt(Document doc) {
         Elements images = doc.select("img");
         int count = 0;
         for (Element img : images) {
@@ -134,7 +134,7 @@ public class AuditService {
      * Counts the approximate number of words in the visible body text.
      * Strips scripts, styles, and noscript blocks before counting.
      */
-    private int countWords(Document doc) {
+    int countWords(Document doc) {
         // Clone so we don't mutate the original document
         Document clone = doc.clone();
         clone.select("script, style, noscript").remove();
